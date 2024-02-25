@@ -63,7 +63,6 @@ def create_folder(folder_name):
 
 def extract(video_file_path):
     # path of video
-    #videopath = r"/Users/a2023/Desktop/GraduationProject/Code/videos/buzdolabi.mp4"
     videopath = video_file_path
     videoname = videopath.rsplit('//', 1)[-1]
     #.mp4 kısmı için gerekirse split işlemi yapabiliriz.
@@ -84,7 +83,6 @@ def extract(video_file_path):
         while vidcap.isOpened():
             success, image = vidcap.read()
             if has_img_face(image):
-                # cv2.imwrite(r"C:\Users\User\Desktop\Graduation Project\Code\videos\frames\%d.png" % count, image)
                 detect_faces(image, count, time_stamp, videoname, folder_path)
             count += 1
         return folder_path
