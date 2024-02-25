@@ -117,7 +117,7 @@ if uploaded_file is not None:
     #video_file = open(uploaded_file.name, 'rb')
     #video_bytes = video_file.read()
 
-    st.video(video_bytes)
+    #st.video(video_bytes)
 
     if analyse_button:
         folder = extract_video.extract(uploaded_file.name)
