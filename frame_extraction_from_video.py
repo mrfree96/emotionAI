@@ -49,12 +49,10 @@ def detect_faces(img, count, timestamp, videoname, folder_path):
         videoname = videoname.rsplit('/')[-1]
         cv2.imwrite(str(folder_path)+'/'+str(videoname) + '_' + str(formatted_time) + '_faces.jpg', gray_img)
 
-    #status = cv2.imwrite(r"/Users/a2023/Desktop/GraduationProject/Code/videos/frames/faces_detected.jpg", gray_img)
-    #print("[INFO] Image faces_detected.jpg written to filesystem: ", status)
 
 def create_folder(folder_name):
     # Specify the path of the folder
-    folder_path = r'/Users/a2023/PycharmProjects/grad_gui/videos/'+folder_name
+    folder_path = r'/videos/'+folder_name
 
     # Create the folder if it doesn't exist
     if not os.path.exists(folder_path):
