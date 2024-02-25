@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 # for opening the media file
 import scipy.io.wavfile as wavfile
 import os
+import tempfile
 
 def convert_to_spectogramv2(wav_file):
     # Read the WAV file
@@ -30,7 +31,11 @@ def convert_to_spectogramv2(wav_file):
     plt.xticks([])
     plt.yticks([])
     # Set the target directory for saving the spectrogram
-    target_dir = r'/spectograms'
+    base_path = tempfile.gettempdir()
+    folder_name = "spectograms"
+    writable_base_path = os.path.join(base_path, folder_name)
+    os.makedirs(writable_base_path, exist_ok=True)
+    target_dir = writable_base_path
 
     # Extract the file name from the path
     spectrogram_name = wav_file.rsplit('/')[-1]

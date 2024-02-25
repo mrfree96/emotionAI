@@ -1,3 +1,5 @@
+import tempfile
+
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -111,37 +113,29 @@ uploaded_file = st.file_uploader("Choose a video to analyse", type=['mp4'])
 analyse_button = st.button("Analyse", type="primary")
 # If file is uploaded
 if uploaded_file is not None:
+    with tempfile.NamedTemporaryFile() as tempDir:
+        tempDir.write(uploaded_file.getbuffer())
+        if analyse_button:
+            folder = extract_video.extract(tempDir.name)
+            data = mp.predict_emotion(folder)
+            st.header("Frame-by-Frame Emotion Detection: Analyzing Video Through Facial Expressions",
+                      divider='rainbow')
+            st.dataframe(data, use_container_width=True)
 
-    #st.header("Uploaded Video: ",
-    #          divider="rainbow")
-    #video_file = open(uploaded_file.name, 'rb')
-    #video_bytes = video_file.read()
+            audio_folder = aue.extract_audio(tempDir.name)
+            transcription = sttext.convert_speech_to_text(audio_folder)
+            st.header("Speech Recognition and Language Model Results",
+                      divider="rainbow")
+            st.header("Transcription", divider='blue')
+            st.write(transcription)
+            language_prediction_data = lmp.analyze_text(audio_folder, transcription)
+            st.header("Language Model Results", divider='blue')
+            language_prediction_data.drop(["AudioName", "Transcript"], axis=1, inplace=True)
+            st.dataframe(language_prediction_data)
 
-    #st.video(video_bytes)
+            signal_data = signal_pred.predict_signal_emotion(audio_folder)
+            st.header("Audio Signal Model Results", divider='rainbow')
+            st.dataframe(signal_data)
 
-    if analyse_button:
-        folder = extract_video.extract(uploaded_file.name)
-        data = mp.predict_emotion(folder)
-        st.header("Frame-by-Frame Emotion Detection: Analyzing Video Through Facial Expressions",
-                  divider='rainbow')
-        st.dataframe(data, use_container_width=True)
-
-        audio_folder = aue.extract_audio(uploaded_file.name)
-        transcription = sttext.convert_speech_to_text(audio_folder)
-        st.header("Speech Recognition and Language Model Results",
-                  divider="rainbow")
-        st.header("Transcription", divider='blue')
-        st.write(transcription)
-        language_prediction_data = lmp.analyze_text(audio_folder, transcription)
-        st.header("Language Model Results", divider='blue')
-        language_prediction_data.drop(["AudioName", "Transcript"], axis=1, inplace=True)
-        st.dataframe(language_prediction_data)
-
-        signal_data = signal_pred.predict_signal_emotion(audio_folder)
-        st.header("Audio Signal Model Results", divider='rainbow')
-        st.dataframe(signal_data)
-
-        #st.header("Conclusion:", divider="rainbow")
-        calculate_end_result()
-
-
+            #st.header("Conclusion:", divider="rainbow")
+            calculate_end_result()

@@ -1,5 +1,6 @@
 import cv2
 import os
+import tempfile
 
 def has_img_face(img):
     # Load the pre-trained face cascade
@@ -50,6 +51,7 @@ def detect_faces(img, count, timestamp, videoname, folder_path):
         cv2.imwrite(str(folder_path)+'/'+str(videoname) + '_' + str(formatted_time) + '_faces.jpg', gray_img)
 
 
+"""
 def create_folder(folder_name):
     # Specify the path of the folder
     folder_path = r'/videos/'+folder_name
@@ -59,7 +61,16 @@ def create_folder(folder_name):
         os.makedirs(folder_path)
         print(f"Folder '{folder_path}' created.")
     return folder_path
+"""
 
+def create_folder(folder_name):
+    # Create a folder in a writable temporary directory
+    temp_dir = tempfile.gettempdir()  # Gets the temporary directory path
+    videos_folder_path = os.path.join(temp_dir, "videos")
+    os.makedirs(videos_folder_path, exist_ok=True)
+    folder_path = os.path.join(videos_folder_path, folder_name)
+    os.makedirs(folder_path, exist_ok=True)  # Creates the folder if it doesn't exist
+    return folder_path
 
 def extract(video_file_path):
     # path of video
