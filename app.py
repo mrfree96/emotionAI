@@ -3,15 +3,8 @@ import pandas as pd
 import streamlit as st
 from sklearn import preprocessing
 import pickle
-
 import time
-import tkinter as tk
-from tkinter import filedialog
-from tkinter import messagebox
-from tkinter import scrolledtext
-
 import matplotlib.pyplot as plt
-
 import frame_extraction_from_video as extract_video
 import model_prediction as mp
 import openpyxl
@@ -22,7 +15,6 @@ import pandas as pd
 import signal_model_prediction as signal_pred
 from tkinter import PhotoImage
 from io import StringIO
-
 
 def isnullcontrol(Emotion):
     # Get the value count of the given emotion, return 0 if the key does not exist
