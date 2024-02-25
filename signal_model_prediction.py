@@ -30,7 +30,7 @@ def convert_to_spectogramv2(wav_file):
     plt.xticks([])
     plt.yticks([])
     # Set the target directory for saving the spectrogram
-    target_dir = r'/Users/a2023/PycharmProjects/grad_gui/spectograms'
+    target_dir = r'/spectograms'
 
     # Extract the file name from the path
     spectrogram_name = wav_file.rsplit('/')[-1]
