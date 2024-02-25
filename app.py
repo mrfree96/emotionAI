@@ -113,7 +113,7 @@ analyse_button = st.button("Analyse", type="primary")
 if uploaded_file is not None:
 
     #st.header("Uploaded Video: ",
-              divider="rainbow")
+    #          divider="rainbow")
     #video_file = open(uploaded_file.name, 'rb')
     #video_bytes = video_file.read()
 
