@@ -13,7 +13,6 @@ import speech_to_text as sttext
 import language_model_prediction as lmp
 import pandas as pd
 import signal_model_prediction as signal_pred
-from tkinter import PhotoImage
 from io import StringIO
 
 def isnullcontrol(Emotion):
