@@ -20,7 +20,7 @@ def extract_audio(video_file):
 
     split = video_file.rsplit('/')[-1]
 
-    audio_path = '/Users/a2023/PycharmProjects/grad_gui/audios/' + split
+    audio_path = '/audios/' + split
     folder_path = create_folder(audio_path)
     video_name = audio_path.rsplit('.')[-2]
     video_name = video_name.rsplit('/')[-1]
