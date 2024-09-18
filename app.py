@@ -102,10 +102,10 @@ def calculate_end_result():
 
 st.title(":rainbow[EmotionAI]")
 st.header("", divider="rainbow")
-st.write("\n:white[EmotionAI is an app designed for analyzing emotions from videos. This app utilizes 3 models."
+st.write("\nEmotionAI is an app designed for analyzing emotions from videos. This app utilizes 3 models."
          "The first model is based on facial expressions, the second model on speech, and the third model"
          " on audio signals. The final decision is determined by combining the results of these three models,"
-         " each of which has different weight in the final outcome.]")
+         " each of which has different weight in the final outcome.")
 st.header("", divider="rainbow")
 
 uploaded_file = st.file_uploader("Choose a video to analyse", type=['mp4'])
